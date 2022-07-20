@@ -17,7 +17,8 @@ public class ShooterSubsystem extends SubsystemBase {
     double rpmConversionFactor;
 
     WPI_TalonFX m_rightShooter;
-    CANSparkMax m_turret;
+    CANSparkMax m_turret; //NEO 550
+    CANSparkMax m_backRoller; //NEO
     RelativeEncoder m_turretEncoder;
     
   //The intention of the Shooter Subsystem class is to initialize the shooter components, including the turret, shooter, and other devices.
@@ -35,6 +36,7 @@ public class ShooterSubsystem extends SubsystemBase {
         // You MUST designate this as a brushless motor,
         //   as it could potentially damage the motor or motor controller if handled incorrectly.
         m_turret = new CANSparkMax(25, MotorType.kBrushless);
+        m_backRoller = new CANSparkMax(45, MotorType.kBrushless);
         m_turret.enableSoftLimit(SoftLimitDirection.kForward, true);
         m_turret.setSoftLimit(SoftLimitDirection.kForward, 1073);
 
@@ -49,6 +51,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public void setShooterSpeed(double speed) {
       // (speed*2048)/600
       m_rightShooter.set(TalonFXControlMode.PercentOutput, speed);
+      m_backRoller.set(speed);
     }
 
     public void setTurretSpeed(double speed, double modifier) {

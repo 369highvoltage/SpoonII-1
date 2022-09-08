@@ -18,6 +18,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     WPI_TalonFX m_rightShooter;
     CANSparkMax m_turret; //NEO 550
+
     CANSparkMax m_backRoller; //NEO
     RelativeEncoder m_turretEncoder;
     
@@ -35,25 +36,31 @@ public class ShooterSubsystem extends SubsystemBase {
         // This initializes the motor that's on the turret, which in this case is a NEO 550.
         // You MUST designate this as a brushless motor,
         //   as it could potentially damage the motor or motor controller if handled incorrectly.
+
         m_turret = new CANSparkMax(25, MotorType.kBrushless);
-        m_backRoller = new CANSparkMax(45, MotorType.kBrushless);
+        m_backRoller = new CANSparkMax(40, MotorType.kBrushless);
+        
         m_turret.enableSoftLimit(SoftLimitDirection.kForward, true);
         m_turret.setSoftLimit(SoftLimitDirection.kForward, 1073);
 
         m_turret.enableSoftLimit(SoftLimitDirection.kReverse, true);
         m_turret.setSoftLimit(SoftLimitDirection.kReverse, -1073);
+        
 
         // This gets the SparkMAX's (Turret Motor Controller) built-in encoder, which records data from the turret's motor, such as speed, rotation, etc.
         m_turretEncoder = m_turret.getEncoder();
         m_turretEncoder.setPosition(0);
+        
     }
 
     public void setShooterSpeed(double speed) {
       // (speed*2048)/600
       m_rightShooter.set(TalonFXControlMode.PercentOutput, speed);
-      m_backRoller.set(speed);
+      m_backRoller.set(-speed);
     }
 
+
+    
     public void setTurretSpeed(double speed, double modifier) {
       //rotates turret based on speed/direction, a value between -1 and 1, and the modifier, which can be a value between 0 and 1
       //if(getTurr  etRotation() >= -90 && getTurretRotation() <= 90)
@@ -66,6 +73,7 @@ public class ShooterSubsystem extends SubsystemBase {
       else if(getTurretRotation() >= 90)
         m_turret.set(-.25);*/
     }
+    
 
     public double getShooterSpeed(){
       // Speed of shooter, recorded in raw sensor units for every 100ms, converted to RPM

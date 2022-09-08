@@ -85,7 +85,7 @@ public class ControllerSubsystem extends SubsystemBase {
     RobotContainer.m_intakeSystem.setConveyorSpeed(-m_operatorController.getYAxis(), .45);
     RobotContainer.m_intakeSystem.setFeederSystem(-m_operatorController.getYAxis(), .6);
 
-    RobotContainer.m_shooterSubsystem.setTurretSpeed(-m_operatorController.getXAxis(), .4);
+    //RobotContainer.m_shooterSubsystem.setTurretSpeed(-m_operatorController.getXAxis(), .4);
 
     double maxDistance = 170.59;
     modifier = RobotContainer.m_limelight.getDistance()/maxDistance;

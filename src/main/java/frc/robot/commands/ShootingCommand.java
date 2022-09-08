@@ -40,13 +40,11 @@ public class ShootingCommand extends CommandBase {
   @Override
   public void execute() {
     RobotContainer.m_shooterSubsystem.setShooterSpeed(
-      0.5
-      //RobotContainer.m_shooterSubsystem.getRangeOfTrajectory()/6380
+      0.8 //RobotContainer.m_shooterSubsystem.getRangeOfTrajectory()/6380
     );
 
-
     if(timer.get() > shootDuration) {
-      RobotContainer.m_intakeSystem.setFeederSystem(1, 0.7);
+      RobotContainer.m_intakeSystem.setFeederSystem(1, 0.25);
       RobotContainer.m_intakeSystem.setConveyorSpeed(1, 1);
     }
   }

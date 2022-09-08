@@ -54,12 +54,9 @@ public class ShooterSubsystem extends SubsystemBase {
     }
 
     public void setShooterSpeed(double speed) {
-      // (speed*2048)/600
-      m_rightShooter.set(TalonFXControlMode.PercentOutput, speed);
+      m_rightShooter.set(TalonFXControlMode.PercentOutput, -speed);
       m_backRoller.set(-speed);
     }
-
-
     
     public void setTurretSpeed(double speed, double modifier) {
       //rotates turret based on speed/direction, a value between -1 and 1, and the modifier, which can be a value between 0 and 1

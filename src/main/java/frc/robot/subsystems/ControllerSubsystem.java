@@ -48,6 +48,7 @@ public class ControllerSubsystem extends SubsystemBase {
   public void setButtonListeners() {
       m_operatorController.A.whenHeld(new AutoAimCommand(0.5),true);
       m_operatorController.B.whenHeld(new ShootingCommand(), true);
+      m_operatorController.RB.whenHeld(new ShootingCommand(), true);
       
       m_operatorController.LB.whenHeld(new ConveyorCommand(0.8, 2), true);
   }

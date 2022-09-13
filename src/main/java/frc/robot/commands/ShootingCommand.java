@@ -9,7 +9,7 @@ package frc.robot.commands;
 //this command enaables the feeder and then the shooter in order to shoot them lemons, aim first
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-
+import frc.robot.utils.ButtonBoard;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -39,8 +39,19 @@ public class ShootingCommand extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
+    final ButtonBoard operatorController = new ButtonBoard(1);
+    
+    Double Speed = 0.0; 
+
+    
+    if (operatorController.getRB() == true) {
+      Speed = 0.5;
+   }else if(operatorController.getB() == true){
+     Speed = 0.7;
+   }
+
     RobotContainer.m_shooterSubsystem.setShooterSpeed(
-      0.8 //RobotContainer.m_shooterSubsystem.getRangeOfTrajectory()/6380
+      Speed
     );
 
     if(timer.get() > shootDuration) {

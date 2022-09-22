@@ -5,16 +5,17 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.PS4Controller;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
-import frc.robot.commands.AutoAimCommand;
-import frc.robot.commands.ConveyorCommand;
-import frc.robot.commands.PIDDriveCommand;
-import frc.robot.commands.PIDTurnLeft;
-import frc.robot.commands.RevUpShooter;
-import frc.robot.commands.ShootingCommand;
+import frc.robot.commands.AutoAim.AutoAimCommand;
+import frc.robot.commands.Movement.PIDDriveCommand;
+import frc.robot.commands.OLD.RevUpShooter;
+import frc.robot.commands.PIDTesting.PIDTurnLeft;
+import frc.robot.commands.TurretAuto.ConveyorCommand;
+import frc.robot.commands.TurretAuto.ShootingCommand;
 import frc.robot.utils.ButtonBoard;
 
 public class ControllerSubsystem extends SubsystemBase {
@@ -36,7 +37,7 @@ public class ControllerSubsystem extends SubsystemBase {
    * X:
    * Y:
    * L1: Conveyor Forward
-   * L2: Eject Cargo
+   * L2: Reverse Cargo
    * R1:
    * R2:
    * Joystick Vertical: Feeder Forward/Backward
@@ -71,9 +72,9 @@ public class ControllerSubsystem extends SubsystemBase {
 
   public void operatorPeriodic(){    
     if(m_operatorController.getPOVHorizontal() == 1)
-      RobotContainer.m_climberSubsystem.setClimberSolenoidForward();
+      RobotContainer.m_climberSubsystem.setClimberSolenoid(Value.kForward);
     else if(m_operatorController.getPOVHorizontal() == -1)
-      RobotContainer.m_climberSubsystem.setClimberSolenoidReverse();
+      RobotContainer.m_climberSubsystem.setClimberSolenoid(Value.kReverse);
       
 
     if(m_operatorController.getPOVVertical() == 1)
@@ -87,36 +88,33 @@ public class ControllerSubsystem extends SubsystemBase {
     RobotContainer.m_intakeSystem.setFeederSystem(-m_operatorController.getYAxis(), .6);
 
     //RobotContainer.m_shooterSubsystem.setTurretSpeed(-m_operatorController.getXAxis(), .4);
-
-    double maxDistance = 170.59;
-    modifier = RobotContainer.m_limelight.getDistance()/maxDistance;
-
     SmartDashboard.putNumber("Turret Modifier", modifier);
 
-    if(m_operatorController.RB.getAsBoolean()){
+    /**
+     *if(m_operatorController.RB.getAsBoolean()){ //RESET PIGEON IMU (TESTING ONLY)
       RobotContainer.m_driveSubsystem.pigeonReset();
-    }
+    }*/
 
-    if(m_operatorController.getLT()){
-      // RobotContainer.m_shooterSubsystem.setShooterSpeed(-1, 0.7); //Enables shooting the balls out, which the force can be adjusted using the modifier.
+    if(m_operatorController.getLT()){ //UNJAM BALL
       RobotContainer.m_intakeSystem.setFeederSystem(-1, 0.7);  
       RobotContainer.m_intakeSystem.setConveyorSpeed(-1, 0.5);
     }
-    else{
-      // RobotContainer.m_shooterSubsystem.setShooterSpeed(0, 0); //turns shooters off.
-      /**
+    else{      
       RobotContainer.m_intakeSystem.setFeederSystem(0, 0); 
-      RobotContainer.m_intakeSystem.setConveyorSpeed(0, 0);  */
+      RobotContainer.m_intakeSystem.setConveyorSpeed(0, 0);  
     }
     
   }
 
-
-  public void testingInit(){
+  /**  
+   * 
+   * STRICTLY FOR TESTING, DO NOT USE ON FIELD OR FOR PRACTICE
+   public void testingInit(){
 
     m_operatorController.X.whenActive(new PIDTurnLeft(90, 0.9));
     m_operatorController.Y.whenActive(new PIDDriveCommand(50, 0.9));
-  }
+  } */
+
 
 
   @Override

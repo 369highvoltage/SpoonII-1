@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.AutoAimCommand;
-import frc.robot.commands.AutonomousCommand;
-import frc.robot.commands.DriveBackwards;
-import frc.robot.commands.IntakeCommand;
-import frc.robot.commands.ShootingCommand;
-import frc.robot.commands.TestCommand;
+import frc.robot.commands.AutoAim.AutoAimCommand;
+import frc.robot.commands.AutonomousSequencing.AutonomousCommand;
+import frc.robot.commands.AutonomousSequencing.TestCommand;
+import frc.robot.commands.OLD.DriveBackwards;
+import frc.robot.commands.TurretAuto.IntakeCommand;
+import frc.robot.commands.TurretAuto.ShootingCommand;
 import frc.robot.subsystems.ShooterSubsystem;
 
 /**
@@ -38,9 +38,9 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     CameraServer.startAutomaticCapture();
-    m_robotContainer = new RobotContainer(); 
-    m_robotContainer.m_driveSubsystem.getLinearDistanceEncoder();
-    m_robotContainer.m_driveSubsystem.getRotation();
+    m_robotContainer = new RobotContainer(); //starts everything within RobotContainer
+    m_robotContainer.m_driveSubsystem.getLinearDistanceEncoder(); //gets distance from the driven motors
+    m_robotContainer.m_driveSubsystem.getRotation(); //gets rotation angle from the pigeon
     //m_autoCommand = new AutonomousCommand();
   }
 
@@ -83,7 +83,10 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {    
-    // System.out.println("auto periodic");
+    /** 
+     * 
+     * Due to no longer having the limelight attached for
+     * varying lighting conditions every 5 minutes, this is unnecessary.
     
     double leftAdjust = -1.0; 
     double rightAdjust = -1.0; // default speed values for chase
@@ -93,7 +96,10 @@ public class Robot extends TimedRobot {
     System.out.println(m_robotContainer.m_limelight.getDistance());
    // new DriveBackwards(5,5);
    // new IntakeCommand(5, 5);
+   */
   
+
+    System.out.println("auto periodic");
   }
     
     
@@ -106,8 +112,12 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    
+    //Initializes shooters for preparation
     m_robotContainer.ShooterInit();
-    m_robotContainer.testing();
+
+    //FOR TESTING ONLY, DO NOT USE FOR PRACTICE AND FIELD
+    //m_robotContainer.testing();
   }
 
   /** This function is called periodically during operator control. */
@@ -115,12 +125,6 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     m_robotContainer.controllerPeriodic(); //activates shooter
     m_robotContainer.driveRobot(); //drives robot
-    //m_robotContainer.watchIntakeControls();
-  //   if(RobotContainer.m_controllerSubsystem.m_operatorController.getB())
-  //     RobotContainer.m_shooterSubsystem.setShooterSpeed(1.0,1.0);
-  //   else
-  //     RobotContainer.m_shooterSubsystem.setShooterSpeed(0, 0);
-
   }
 
   @Override

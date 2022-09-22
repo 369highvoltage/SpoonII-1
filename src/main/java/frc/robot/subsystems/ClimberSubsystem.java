@@ -30,29 +30,34 @@ public class ClimberSubsystem extends SubsystemBase {
 
     leftMotor = new CANSparkMax(16, MotorType.kBrushless);
     rightMotor = new CANSparkMax(17, MotorType.kBrushless);
+
+    //Gets encoders from the motor controllers attached
     leftEncoder = leftMotor.getEncoder();
     rightEncoder = rightMotor.getEncoder();
+
+    //resets encoders to 0, MAKE SURE EVERYTHING IS RESET INTO THE BOTTOM POSITION BEFORE STARTING!
     rightEncoder.setPosition(0);
     leftEncoder.setPosition(0);
+
     climberSolenoid = ph.makeDoubleSolenoid(3,4);
-    leftMotor.setSoftLimit(SoftLimitDirection.kForward, -100.0f);
-    rightMotor.setSoftLimit(SoftLimitDirection.kForward, -100.0f);
   }
 
   public void setClimberSpeed(double speed, double mod) {
-    SmartDashboard.putNumber("Climber position - RIGHT", rightEncoder.getPosition());
-    SmartDashboard.putNumber("Climber position - LEFT", leftEncoder.getPosition());
     leftMotor.setInverted(true);
     rightMotor.setInverted(false);
-    leftMotor.set(speed*mod);
     rightMotor.set(speed*mod);
+    leftMotor.set(speed*mod);
   }
 
-  public void setClimberSolenoidForward(){
-    climberSolenoid.set(Value.kForward);
+
+  public void setClimberSolenoid(Value direction) {
+    climberSolenoid.set(direction);
   }
 
-  public void setClimberSolenoidReverse(){
-    climberSolenoid.set(Value.kReverse);
+
+  public void climberOutput(){
+    SmartDashboard.putNumber("Climber RIGHT", rightEncoder.getPosition());
+    SmartDashboard.putNumber("Climber LEFT", leftEncoder.getPosition());
+
   }
 }

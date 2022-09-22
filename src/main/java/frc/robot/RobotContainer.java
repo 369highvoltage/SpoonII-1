@@ -11,16 +11,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.AutoAimCommand;
-import frc.robot.commands.AutonomousCommand;
-import frc.robot.commands.ConveyorCommand;
-import frc.robot.commands.IntakeCommand;
-import frc.robot.commands.ShootingCommand;
-import frc.robot.commands.TestCommand;
+import frc.robot.commands.AutoAim.AutoAimCommand;
+import frc.robot.commands.AutonomousSequencing.AutonomousCommand;
+import frc.robot.commands.AutonomousSequencing.TestCommand;
+import frc.robot.commands.TurretAuto.ConveyorCommand;
+import frc.robot.commands.TurretAuto.IntakeCommand;
+import frc.robot.commands.TurretAuto.ShootingCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.ControllerSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.PnuematicSubsystem;
@@ -34,7 +33,6 @@ import frc.robot.subsystems.ShooterSubsystem;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public static ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   public static DrivetrainSubsystem m_driveSubsystem = new DrivetrainSubsystem();
   public static IntakeSubsystem m_intakeSystem = new IntakeSubsystem();
   public static ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
@@ -80,7 +78,7 @@ public class RobotContainer {
   public void ShooterInit(){
 
     //operator_shareButton.whenActive(new IntakeCommand(0.8, 1));
-    m_controllerSubsystem.setButtonListeners();
+    m_controllerSubsystem.setButtonListeners(); //checks for when buttons are pressed.
   }
 
 
@@ -93,9 +91,13 @@ public class RobotContainer {
     return m_chooser.getSelected();
   }
 
+  /** 
+   * Again, strictly for testing. DO NOT USE ON FIELD
+   * 
   public void testing(){
     m_controllerSubsystem.testingInit();
   }
+  */
 
   /**
    * The intention of this method is to setup the Smart Dashboard to display global output values, such as distance, rotation, etc.

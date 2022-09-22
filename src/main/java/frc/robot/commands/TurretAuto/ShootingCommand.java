@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.TurretAuto;
 //this command enaables the feeder and then the shooter in order to shoot them lemons, aim first
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
@@ -45,9 +45,9 @@ public class ShootingCommand extends CommandBase {
 
     
     if (operatorController.getRB() == true) {
-      Speed = 0.5;
+      Speed = 1.0;
    }else if(operatorController.getB() == true){
-     Speed = 0.7;
+     Speed = 1.0;
    }
 
     RobotContainer.m_shooterSubsystem.setShooterSpeed(

@@ -1,0 +1,10 @@
+OLD and PIDTesting are not to be used in actual competition unless they've
+been modified to be functional, as at the moment they were created purely
+to test systems such as PID.
+
+Regarding PID, ALWAYS change the values based on the carpet as they can 
+affect overshoot, how fast the robot turns/drives, and how accurately
+the robot can make the turn/distance.
+
+For more info, watch this video series:
+https://www.youtube.com/watch?v=jIKBWO7ps0w

@@ -46,7 +46,7 @@ public class AutoAimHeld extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    buttonPressed = RobotContainer.m_controllerSubsystem.m_operatorController.getA();
+    buttonPressed = RobotContainer.m_controllerSubsystem.m_operatorController.getCrossButtonPressed();
     System.out.println("autoaim exec ");
     adjust = turret_Limelight.steeringAdjust();
     System.out.println("stadj returned" + adjust);
@@ -65,7 +65,7 @@ public class AutoAimHeld extends CommandBase {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   public boolean isFinished() {
-    return (RobotContainer.m_controllerSubsystem.m_operatorController.getA() == false);
+    return (RobotContainer.m_controllerSubsystem.m_operatorController.getCrossButtonPressed() == false);
   }
 
 }

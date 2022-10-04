@@ -10,6 +10,7 @@ package frc.robot.commands.TurretAuto;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.utils.ButtonBoard;
+import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -39,15 +40,12 @@ public class ShootingCommand extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    final ButtonBoard operatorController = new ButtonBoard(1);
-    
+    final PS4Controller operatorController = new PS4Controller(1);
     Double Speed = 0.0; 
 
     
-    if (operatorController.getRB() == true) {
-      Speed = 1.0;
-   }else if(operatorController.getB() == true){
-     Speed = 1.0;
+    if (operatorController.getR2Button() == true) {
+      Speed = 0.40;
    }
 
     RobotContainer.m_shooterSubsystem.setShooterSpeed(
@@ -75,7 +73,7 @@ public class ShootingCommand extends CommandBase {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   public boolean isFinished() {
-    return !RobotContainer.m_controllerSubsystem.m_operatorController.getB();
+    return !RobotContainer.m_controllerSubsystem.m_operatorController.getCrossButtonPressed();
     // return timer.get() > shootDuration;
     // return (timer.get() > shootDuration) || !RobotContainer.m_controllerSubsystem.m_operatorController.getB();
   }

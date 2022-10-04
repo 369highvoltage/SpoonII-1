@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 import frc.robot.commands.AutoAim.AutoAimCommand;
+import frc.robot.commands.AutoAim.AutoshootCommand;
 import frc.robot.commands.Movement.PIDDriveCommand;
 import frc.robot.commands.OLD.RevUpShooter;
 import frc.robot.commands.PIDTesting.PIDTurnLeft;
@@ -20,13 +21,14 @@ import frc.robot.utils.ButtonBoard;
 
 public class ControllerSubsystem extends SubsystemBase {
   public PS4Controller m_driverController = new PS4Controller(0);
-  public ButtonBoard m_operatorController = new ButtonBoard(1);
+  public PS4Controller m_operatorController = new PS4Controller(1);
+  public AutoAimCommand autoAim = new AutoAimCommand(0.5);
 
   public double modifier = 0;
 
   /** Creates a new ControllerSubsystem. */
   public ControllerSubsystem() {
-
+    
   }
 
   /**
@@ -46,16 +48,17 @@ public class ControllerSubsystem extends SubsystemBase {
    * POV Horizontal: Solenoid Reverse/Forward
    */
 
-  public void setButtonListeners() {
-      m_operatorController.A.whenHeld(new AutoAimCommand(0.5),true);
-      m_operatorController.B.whenHeld(new ShootingCommand(), true);
-      m_operatorController.RB.whenHeld(new ShootingCommand(), true);
+  public void shooting(){
+
+     // m_operatorController.R2.whenHeld(new ShootingCommand(), true);
+      //m_operatorController.RB.whenHeld(new ShootingCommand(), true);
       
-      m_operatorController.LB.whenHeld(new ConveyorCommand(0.8, 2), true);
+      //m_operatorController.LB.whenHeld(new ConveyorCommand(0.8, 2), true);
   }
 
-  public void driverPeriodic(){
-    // Intake control
+  //move climber into action mode and sleep mode ; forward and backward
+  public void operatorPeriodic(){
+    //Intake control
     if(m_driverController.getL2Button()) { 
       RobotContainer.m_intakeSystem.setIntakeSystem(1, 0.7);
     } else if(m_driverController.getR2Button()) {
@@ -64,28 +67,29 @@ public class ControllerSubsystem extends SubsystemBase {
       RobotContainer.m_intakeSystem.setIntakeSystem(0, 1);
     }
 
-    if(m_driverController.getL1Button())
+    if(m_operatorController.getSquareButton())
       RobotContainer.m_pnuematicSubsystem.setIntakeForward();
-    if(m_driverController.getR1Button())
+    if(m_operatorController.getCircleButton())
       RobotContainer.m_pnuematicSubsystem.setIntakeReverse();
-  }
 
-  public void operatorPeriodic(){    
-    if(m_operatorController.getPOVHorizontal() == 1)
-      RobotContainer.m_climberSubsystem.setClimberSolenoid(Value.kForward);
-    else if(m_operatorController.getPOVHorizontal() == -1)
+    if(m_operatorController.getTriangleButtonPressed()){
+    RobotContainer.m_climberSubsystem.setClimberSolenoid(Value.kForward);
+    }
+    if(m_operatorController.getCrossButtonPressed()){
       RobotContainer.m_climberSubsystem.setClimberSolenoid(Value.kReverse);
+      }
+
       
 
-    if(m_operatorController.getPOVVertical() == 1)
+    if(m_operatorController.getR3Button())
       RobotContainer.m_climberSubsystem.setClimberSpeed(-1, 0.6);
-    else if(m_operatorController.getPOVVertical() == -1)
+    else if(m_operatorController.getL3Button())
       RobotContainer.m_climberSubsystem.setClimberSpeed(1, 0.6);
     else
       RobotContainer.m_climberSubsystem.setClimberSpeed(0, 1);
 
-    RobotContainer.m_intakeSystem.setConveyorSpeed(-m_operatorController.getYAxis(), .45);
-    RobotContainer.m_intakeSystem.setFeederSystem(-m_operatorController.getYAxis(), .6);
+    RobotContainer.m_intakeSystem.setConveyorSpeed(-m_operatorController.getLeftY(), .45);
+    RobotContainer.m_intakeSystem.setFeederSystem(-m_operatorController.getLeftY(), .6);
 
     //RobotContainer.m_shooterSubsystem.setTurretSpeed(-m_operatorController.getXAxis(), .4);
     SmartDashboard.putNumber("Turret Modifier", modifier);
@@ -93,9 +97,11 @@ public class ControllerSubsystem extends SubsystemBase {
     /**
      *if(m_operatorController.RB.getAsBoolean()){ //RESET PIGEON IMU (TESTING ONLY)
       RobotContainer.m_driveSubsystem.pigeonReset();
+      -------------------------------------------------------------
+
     }*/
 
-    if(m_operatorController.getLT()){ //UNJAM BALL
+    if(m_operatorController.getR1Button()){ //UNJAM BALL
       RobotContainer.m_intakeSystem.setFeederSystem(-1, 0.7);  
       RobotContainer.m_intakeSystem.setConveyorSpeed(-1, 0.5);
     }
@@ -103,6 +109,8 @@ public class ControllerSubsystem extends SubsystemBase {
       RobotContainer.m_intakeSystem.setFeederSystem(0, 0); 
       RobotContainer.m_intakeSystem.setConveyorSpeed(0, 0);  
     }
+
+   
     
   }
 

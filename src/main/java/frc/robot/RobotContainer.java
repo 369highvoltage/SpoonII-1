@@ -43,6 +43,7 @@ public class RobotContainer {
 
   public static AutonomousCommand m_autoCommand = new AutonomousCommand();
   private TestCommand m_tc = new TestCommand();
+  public static ShootingCommand shoot = new ShootingCommand();
 
 
   //Input from the PS4 Controllers. When calling these, we must define what port the controllers are plugged into (set by the DRIVER STATION).
@@ -78,13 +79,12 @@ public class RobotContainer {
   public void ShooterInit(){
 
     //operator_shareButton.whenActive(new IntakeCommand(0.8, 1));
-    m_controllerSubsystem.setButtonListeners(); //checks for when buttons are pressed.
+    m_controllerSubsystem.shooting(); //checks for when buttons are pressed.
   }
 
 
   public void controllerPeriodic() {
     m_controllerSubsystem.operatorPeriodic();
-    m_controllerSubsystem.driverPeriodic();
   }
 
   public Command getAutonomousCommand() {

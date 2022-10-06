@@ -9,7 +9,6 @@ package frc.robot.commands.TurretAuto;
 //this command enaables the feeder and then the shooter in order to shoot them lemons, aim first
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.utils.ButtonBoard;
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;

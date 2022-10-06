@@ -2,12 +2,11 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package edu.wpi.first.wpilibj;
+package frc.robot.utils;
 
 import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.hal.HAL;
-import edu.wpi.first.wpilibj.event.BooleanEvent;
-import edu.wpi.first.wpilibj.event.EventLoop;
+import edu.wpi.first.wpilibj.GenericHID;
 
 /**
  * Handle input from PS4 controllers connected to the Driver Station.
@@ -211,29 +210,6 @@ public class PS4Controller extends GenericHID {
     return getRawButtonReleased(Button.kR2.value);
   }
 
-  /**
-   * Constructs an event instance around the L2 button's digital signal.
-   *
-   * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the L2 button's digital signal attached to the given
-   *     loop.
-   */
-  @SuppressWarnings("MethodName")
-  public BooleanEvent L2(EventLoop loop) {
-    return new BooleanEvent(loop, this::getL2Button);
-  }
-
-  /**
-   * Constructs an event instance around the R2 button's digital signal.
-   *
-   * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the R2 button's digital signal attached to the given
-   *     loop.
-   */
-  @SuppressWarnings("MethodName")
-  public BooleanEvent R2(EventLoop loop) {
-    return new BooleanEvent(loop, this::getR2Button);
-  }
 
   /**
    * Read the value of the L1 button on the controller.
@@ -290,30 +266,6 @@ public class PS4Controller extends GenericHID {
   }
 
   /**
-   * Constructs an event instance around the L1 button's digital signal.
-   *
-   * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the L1 button's digital signal attached to the given
-   *     loop.
-   */
-  @SuppressWarnings("MethodName")
-  public BooleanEvent L1(EventLoop loop) {
-    return new BooleanEvent(loop, this::getL1Button);
-  }
-
-  /**
-   * Constructs an event instance around the R1 button's digital signal.
-   *
-   * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the R1 button's digital signal attached to the given
-   *     loop.
-   */
-  @SuppressWarnings("MethodName")
-  public BooleanEvent R1(EventLoop loop) {
-    return new BooleanEvent(loop, this::getR1Button);
-  }
-
-  /**
    * Read the value of the L3 button (pressing the left analog stick) on the controller.
    *
    * @return The state of the button.
@@ -367,29 +319,6 @@ public class PS4Controller extends GenericHID {
     return getRawButtonReleased(Button.kR3.value);
   }
 
-  /**
-   * Constructs an event instance around the L3 button's digital signal.
-   *
-   * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the L3 button's digital signal attached to the given
-   *     loop.
-   */
-  @SuppressWarnings("MethodName")
-  public BooleanEvent L3(EventLoop loop) {
-    return new BooleanEvent(loop, this::getL3Button);
-  }
-
-  /**
-   * Constructs an event instance around the R3 button's digital signal.
-   *
-   * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the R3 button's digital signal attached to the given
-   *     loop.
-   */
-  @SuppressWarnings("MethodName")
-  public BooleanEvent R3(EventLoop loop) {
-    return new BooleanEvent(loop, this::getR3Button);
-  }
 
   /**
    * Read the value of the Square button on the controller.
@@ -419,17 +348,6 @@ public class PS4Controller extends GenericHID {
   }
 
   /**
-   * Constructs an event instance around the square button's digital signal.
-   *
-   * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the square button's digital signal attached to the given
-   *     loop.
-   */
-  public BooleanEvent square(EventLoop loop) {
-    return new BooleanEvent(loop, this::getSquareButton);
-  }
-
-  /**
    * Read the value of the Cross button on the controller.
    *
    * @return The state of the button.
@@ -456,16 +374,6 @@ public class PS4Controller extends GenericHID {
     return getRawButtonReleased(Button.kCross.value);
   }
 
-  /**
-   * Constructs an event instance around the cross button's digital signal.
-   *
-   * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the cross button's digital signal attached to the given
-   *     loop.
-   */
-  public BooleanEvent cross(EventLoop loop) {
-    return new BooleanEvent(loop, this::getCrossButton);
-  }
 
   /**
    * Read the value of the Triangle button on the controller.
@@ -522,17 +430,6 @@ public class PS4Controller extends GenericHID {
   }
 
   /**
-   * Constructs an event instance around the circle button's digital signal.
-   *
-   * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the circle button's digital signal attached to the given
-   *     loop.
-   */
-  public BooleanEvent circle(EventLoop loop) {
-    return new BooleanEvent(loop, this::getCircleButton);
-  }
-
-  /**
    * Read the value of the share button on the controller.
    *
    * @return The state of the button.
@@ -559,17 +456,6 @@ public class PS4Controller extends GenericHID {
     return getRawButtonReleased(Button.kShare.value);
   }
 
-  /**
-   * Constructs an event instance around the share button's digital signal.
-   *
-   * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the share button's digital signal attached to the given
-   *     loop.
-   */
-  @SuppressWarnings("MethodName")
-  public BooleanEvent share(EventLoop loop) {
-    return new BooleanEvent(loop, this::getShareButton);
-  }
 
   /**
    * Read the value of the PS button on the controller.
@@ -598,17 +484,6 @@ public class PS4Controller extends GenericHID {
     return getRawButtonReleased(Button.kPS.value);
   }
 
-  /**
-   * Constructs an event instance around the PS button's digital signal.
-   *
-   * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the PS button's digital signal attached to the given
-   *     loop.
-   */
-  @SuppressWarnings("MethodName")
-  public BooleanEvent PS(EventLoop loop) {
-    return new BooleanEvent(loop, this::getPSButton);
-  }
 
   /**
    * Read the value of the options button on the controller.
@@ -637,16 +512,6 @@ public class PS4Controller extends GenericHID {
     return getRawButtonReleased(Button.kOptions.value);
   }
 
-  /**
-   * Constructs an event instance around the options button's digital signal.
-   *
-   * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the options button's digital signal attached to the
-   *     given loop.
-   */
-  public BooleanEvent options(EventLoop loop) {
-    return new BooleanEvent(loop, this::getOptionsButton);
-  }
 
   /**
    * Read the value of the touchpad on the controller.
@@ -673,16 +538,5 @@ public class PS4Controller extends GenericHID {
    */
   public boolean getTouchpadReleased() {
     return getRawButtonReleased(Button.kTouchpad.value);
-  }
-
-  /**
-   * Constructs an event instance around the touchpad's digital signal.
-   *
-   * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the touchpad's digital signal attached to the given
-   *     loop.
-   */
-  public BooleanEvent touchpad(EventLoop loop) {
-    return new BooleanEvent(loop, this::getTouchpad);
   }
 }

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.RobotContainer;
 import frc.robot.commands.AutoAim.AutoAimCommand;
 import frc.robot.commands.AutoAim.AutoshootCommand;
@@ -17,7 +18,7 @@ import frc.robot.commands.OLD.RevUpShooter;
 import frc.robot.commands.PIDTesting.PIDTurnLeft;
 import frc.robot.commands.TurretAuto.ConveyorCommand;
 import frc.robot.commands.TurretAuto.ShootingCommand;
-import frc.robot.utils.ButtonBoard;
+
 
 public class ControllerSubsystem extends SubsystemBase {
   public PS4Controller m_driverController = new PS4Controller(0);
@@ -49,8 +50,7 @@ public class ControllerSubsystem extends SubsystemBase {
    */
 
   public void shooting(){
-
-     // m_operatorController.R2.whenHeld(new ShootingCommand(), true);
+    new JoystickButton(m_operatorController, PS4Controller.Button.kR2.value).whenHeld(new ShootingCommand());
       //m_operatorController.RB.whenHeld(new ShootingCommand(), true);
       
       //m_operatorController.LB.whenHeld(new ConveyorCommand(0.8, 2), true);

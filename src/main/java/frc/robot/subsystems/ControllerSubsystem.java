@@ -60,17 +60,17 @@ public class ControllerSubsystem extends SubsystemBase {
   //move climber into action mode and sleep mode ; forward and backward
   public void operatorPeriodic(){
     //Intake control
-    if(m_driverController.getL2Button()) { 
+    if(m_operatorController.getShareButton()) { 
       RobotContainer.m_intakeSystem.setIntakeSystem(1, 0.7);
-    } else if(m_driverController.getR2Button()) {
+    } else if(m_operatorController.getOptionsButton()) {
       RobotContainer.m_intakeSystem.setIntakeSystem(1, -0.7);
     } else {
       RobotContainer.m_intakeSystem.setIntakeSystem(0, 1);
     }
 
-    if(m_operatorController.getSquareButton())
+    if(m_operatorController.getSquareButtonPressed())
       RobotContainer.m_pnuematicSubsystem.setIntakeForward();
-    if(m_operatorController.getCircleButton())
+    if(m_operatorController.getCircleButtonPressed())
       RobotContainer.m_pnuematicSubsystem.setIntakeReverse();
 
     if(m_operatorController.getTriangleButtonPressed()){
@@ -109,6 +109,11 @@ public class ControllerSubsystem extends SubsystemBase {
     else{      
       RobotContainer.m_intakeSystem.setFeederSystem(0, 0); 
       RobotContainer.m_intakeSystem.setConveyorSpeed(0, 0);  
+    }
+
+    if(m_operatorController.getL1Button()){ //UNJAM BALL
+      RobotContainer.m_intakeSystem.setFeederSystem(1, 0.7);  
+      RobotContainer.m_intakeSystem.setConveyorSpeed(1, 0.5);
     }
 
    

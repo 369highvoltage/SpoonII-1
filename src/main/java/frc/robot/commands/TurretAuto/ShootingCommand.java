@@ -1,14 +1,8 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.commands.TurretAuto;
 //this command enaables the feeder and then the shooter in order to shoot them lemons, aim first
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -38,13 +32,14 @@ public class ShootingCommand extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    Double Speed = 1.0; 
     RobotContainer.m_shooterSubsystem.setShooterSpeed(
-      Speed
+      0.66
+      //RobotContainer.m_shooterSubsystem.getRangeOfTrajectory()/6380
     );
 
+
     if(timer.get() > shootDuration) {
-      RobotContainer.m_intakeSystem.setFeederSystem(1, 0.25);
+      RobotContainer.m_intakeSystem.setFeederSystem(1, 0.7);
       RobotContainer.m_intakeSystem.setConveyorSpeed(1, 1);
     }
   }
@@ -64,7 +59,7 @@ public class ShootingCommand extends CommandBase {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   public boolean isFinished() {
-    return !RobotContainer.m_controllerSubsystem.m_operatorController.getCrossButtonPressed();
+    return !RobotContainer.m_controllerSubsystem.m_operatorController.getR2Button();
     // return timer.get() > shootDuration;
     // return (timer.get() > shootDuration) || !RobotContainer.m_controllerSubsystem.m_operatorController.getB();
   }

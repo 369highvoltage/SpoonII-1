@@ -50,7 +50,8 @@ public class ControllerSubsystem extends SubsystemBase {
    */
 
   public void shooting(){
-    new JoystickButton(m_operatorController, PS4Controller.Button.kR2.value).whenHeld(new ShootingCommand());
+    new JoystickButton(m_operatorController, PS4Controller.Button.kR2.value).whileHeld(new ShootingCommand());
+    new JoystickButton(m_operatorController, PS4Controller.Button.kL2.value).whileHeld(new ConveyorCommand(0.8,2)); 
       //m_operatorController.RB.whenHeld(new ShootingCommand(), true);
       
       //m_operatorController.LB.whenHeld(new ConveyorCommand(0.8, 2), true);

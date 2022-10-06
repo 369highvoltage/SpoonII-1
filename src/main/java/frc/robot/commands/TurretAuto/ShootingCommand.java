@@ -9,7 +9,6 @@ package frc.robot.commands.TurretAuto;
 //this command enaables the feeder and then the shooter in order to shoot them lemons, aim first
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -39,14 +38,7 @@ public class ShootingCommand extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    final PS4Controller operatorController = new PS4Controller(1);
-    Double Speed = 0.0; 
-
-    
-    if (operatorController.getR2Button() == true) {
-      Speed = 0.40;
-   }
-
+    Double Speed = 1.0; 
     RobotContainer.m_shooterSubsystem.setShooterSpeed(
       Speed
     );

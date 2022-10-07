@@ -45,4 +45,9 @@ public final class Constants {
     public static double sD = 0;
 
 
+    //Climber limits 
+    //names are flipped, rev is highest, non-rev is lowest
+    public static float climberLimit = -10;
+    public static float revClimberLimit = -145;
+
 }

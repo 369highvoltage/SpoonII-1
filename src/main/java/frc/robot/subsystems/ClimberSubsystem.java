@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class ClimberSubsystem extends SubsystemBase {
 
@@ -38,6 +39,18 @@ public class ClimberSubsystem extends SubsystemBase {
     //resets encoders to 0, MAKE SURE EVERYTHING IS RESET INTO THE BOTTOM POSITION BEFORE STARTING!
     rightEncoder.setPosition(0);
     leftEncoder.setPosition(0);
+
+    leftMotor.setSoftLimit(SoftLimitDirection.kForward, Constants.climberLimit);
+    rightMotor.setSoftLimit(SoftLimitDirection.kForward, Constants.climberLimit);
+
+    leftMotor.setSoftLimit(SoftLimitDirection.kReverse, Constants.revClimberLimit);
+    rightMotor.setSoftLimit(SoftLimitDirection.kReverse, Constants.revClimberLimit);
+
+
+    leftMotor.enableSoftLimit(SoftLimitDirection.kForward, true);
+    rightMotor.enableSoftLimit(SoftLimitDirection.kForward, true);
+    leftMotor.enableSoftLimit(SoftLimitDirection.kReverse, true);
+    rightMotor.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
     climberSolenoid = ph.makeDoubleSolenoid(3,4);
   }

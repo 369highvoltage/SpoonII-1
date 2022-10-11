@@ -42,7 +42,7 @@ public class RobotContainer {
   public static ControllerSubsystem m_controllerSubsystem = new ControllerSubsystem();
 
   public static AutonomousCommand m_autoCommand = new AutonomousCommand();
-  private TestCommand m_tc = new TestCommand();
+  public static TestCommand m_tc = new TestCommand();
   public static ShootingCommand shoot = new ShootingCommand();
 
 
@@ -54,10 +54,6 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    m_chooser.setDefaultOption("Right",m_tc.Autonomous3());
-    m_chooser.addOption("Left",m_tc.Autonomous1());
-    m_chooser.addOption("Middle",m_tc.Autonomous2());
-    m_chooser.addOption("Right4",m_tc.Autonomous4());
     //executes the SmartDashboard commands.
     SetupDashboard();
 
@@ -88,7 +84,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return m_chooser.getSelected();
+    return m_tc.Autonomous1();
   }
 
   /** 

@@ -50,4 +50,6 @@ public final class Constants {
     public static float climberLimit = -10;
     public static float revClimberLimit = -145;
 
+    public static double autoSpeed = 0.6;
+
 }

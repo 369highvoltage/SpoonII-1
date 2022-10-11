@@ -7,12 +7,15 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.RobotContainer;
 import frc.robot.commands.AutoAim.AutoAimCommand;
 import frc.robot.commands.AutoAim.AutoshootCommand;
+import frc.robot.commands.AutonomousSequencing.AutonomousCommand;
+import frc.robot.commands.AutonomousSequencing.TestCommand;
 import frc.robot.commands.Movement.PIDDriveCommand;
 import frc.robot.commands.OLD.RevUpShooter;
 import frc.robot.commands.PIDTesting.PIDTurnLeft;
@@ -51,7 +54,7 @@ public class ControllerSubsystem extends SubsystemBase {
 
   public void shooting(){
     new JoystickButton(m_operatorController, PS4Controller.Button.kR2.value).whileHeld(new ShootingCommand());
-    new JoystickButton(m_operatorController, PS4Controller.Button.kL2.value).whileHeld(new ConveyorCommand(0.8,2)); 
+    new JoystickButton(m_operatorController, PS4Controller.Button.kL2.value).whileHeld(new ConveyorCommand(0.8,2));
       //m_operatorController.RB.whenHeld(new ShootingCommand(), true);
       
       //m_operatorController.LB.whenHeld(new ConveyorCommand(0.8, 2), true);
@@ -115,6 +118,7 @@ public class ControllerSubsystem extends SubsystemBase {
       RobotContainer.m_intakeSystem.setFeederSystem(1, 0.7);  
       RobotContainer.m_intakeSystem.setConveyorSpeed(1, 0.5);
     }
+
 
    
     

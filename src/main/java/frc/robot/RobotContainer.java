@@ -107,6 +107,7 @@ public class RobotContainer {
     SmartDashboard.putNumber("Rotation Rate", m_driveSubsystem.getAngularAcceleration());
     SmartDashboard.putNumber("Shooter Speed", m_shooterSubsystem.getShooterSpeed());
     SmartDashboard.putNumber("Target Speed", m_shooterSubsystem.getRangeOfTrajectory());
+    SmartDashboard.putNumber("Current Angle", m_driveSubsystem.getRotation());
     m_climberSubsystem.climberOutput();
     SmartDashboard.putData(m_chooser);
   }

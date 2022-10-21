@@ -15,7 +15,6 @@ import frc.robot.RobotContainer;
 
 public class ShooterSubsystem extends SubsystemBase {
     double rpmConversionFactor;
-
     WPI_TalonFX m_rightShooter;
     CANSparkMax m_turret; //NEO 550
 
@@ -95,7 +94,7 @@ public class ShooterSubsystem extends SubsystemBase {
       double oRPM = ((60 * (v / r)) /Math.PI);
       // double oRPM = (60*(v/r))/(2*Math.PI);
 
-      System.out.println(String.format("R: %f; v: %f; oRPM: %f", R, v, oRPM));
+      //System.out.println(String.format("R: %f; v: %f; oRPM: %f", R, v, oRPM));
       SmartDashboard.putNumber("Distance From Objective", R);
       SmartDashboard.putNumber("Decimal RPM",(oRPM/6300));
 

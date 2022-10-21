@@ -38,18 +38,22 @@ public final class Constants {
      */
     //Set this before the game, this will control the autonomous starting mode.
     public static int autoMode = 0;
-
+    
     //Steering PIDs 
-    public static double sP = 0.1;
-    public static double sI = 0.01;
-    public static double sD = 0;
+    public static double sP = 0.025;
+    public static double sI = 0.0445;
+    public static double sD = 0.0065;
+    public static double sILimit = 0.7;
+
+    public static double steeringModifier = 0.45;
 
 
     //Climber limits 
     //names are flipped, rev is highest, non-rev is lowest
-    public static float climberLimit = -10;
+    public static float climberLimit = 5;
     public static float revClimberLimit = -145;
 
     public static double autoSpeed = 0.6;
+
 
 }

@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    CameraServer.startAutomaticCapture();
+    //CameraServer.startAutomaticCapture();
     m_robotContainer = new RobotContainer(); //starts everything within RobotContainer
     m_robotContainer.m_driveSubsystem.getLinearDistanceEncoder(); //gets distance from the driven motors
     m_robotContainer.m_driveSubsystem.getRotation(); //gets rotation angle from the pigeon

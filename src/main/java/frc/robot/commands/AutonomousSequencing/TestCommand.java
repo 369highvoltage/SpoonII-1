@@ -17,16 +17,8 @@ public class TestCommand {
                 new TimedMovement(0.8),
                 new TimedIntake(0.8)
             ),
-            new TimedRotation(0.84),
-            new TimedShoot(2)
-        );
-    }
-
-    public Command PIDTesting(){
-        return new SequentialCommandGroup(
-            new PIDSteering(90),
-            new TimedMovement(1),
-            new PIDSteering(-90)
+            new PIDSteering(-185),
+            new TimedShoot(1)
         );
     }
 

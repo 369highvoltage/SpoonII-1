@@ -40,7 +40,7 @@ public class ShootingCommand extends CommandBase {
 
     if(timer.get() > shootDuration) {
       RobotContainer.m_intakeSystem.setFeederSystem(1, 0.7);
-      RobotContainer.m_intakeSystem.setConveyorSpeed(1, 1);
+      RobotContainer.m_intakeSystem.setConveyorSpeed(-1, 1);
     }
   }
 

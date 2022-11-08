@@ -16,14 +16,15 @@ public class TimedShoot extends CommandBase {
         timer.reset();
         timer.start();
         RobotContainer.m_shooterSubsystem.setShooterSpeed(0.58);
+
     }
 
     public void execute() {
-        RobotContainer.m_shooterSubsystem.setShooterSpeed(0.58);
-        if(timer.get() > seconds) {
-            RobotContainer.m_intakeSystem.setFeederSystem(1, 0.7);
-            RobotContainer.m_intakeSystem.setConveyorSpeed(1, 1);
-          }
+            while(timer.get() < seconds) {
+                RobotContainer.m_shooterSubsystem.setShooterSpeed(0.58);
+                RobotContainer.m_intakeSystem.setFeederSystem(1, 0.7);
+                RobotContainer.m_intakeSystem.setConveyorSpeed(1, 1);
+              }
     }
 
     public boolean isFinished() {
@@ -31,8 +32,9 @@ public class TimedShoot extends CommandBase {
     }
 
     public void end() {
-        RobotContainer.m_shooterSubsystem.setShooterSpeed(0);
-        RobotContainer.m_intakeSystem.setFeederSystem(0, 0);
-        RobotContainer.m_intakeSystem.setConveyorSpeed(0, 0);
+        RobotContainer.m_shooterSubsystem.setShooterSpeed(0.58);
+        RobotContainer.m_intakeSystem.setFeederSystem(1, 0.7);
+        RobotContainer.m_intakeSystem.setConveyorSpeed(1, 1);
+
     }
 }

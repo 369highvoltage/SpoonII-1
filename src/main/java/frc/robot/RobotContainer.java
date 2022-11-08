@@ -4,18 +4,13 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PS4Controller;
-import edu.wpi.first.wpilibj.PneumaticHub;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.AutoAim.AutoAimCommand;
 import frc.robot.commands.AutonomousSequencing.AutonomousCommand;
 import frc.robot.commands.AutonomousSequencing.TestCommand;
-import frc.robot.commands.TurretAuto.ConveyorCommand;
-import frc.robot.commands.TurretAuto.IntakeCommand;
 import frc.robot.commands.TurretAuto.ShootingCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.ControllerSubsystem;

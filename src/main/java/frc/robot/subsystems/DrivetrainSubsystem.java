@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.sensors.WPI_PigeonIMU;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
@@ -106,6 +107,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public void arcadeDrive(double speed, double steering){
     m_drive.arcadeDrive(speed*speedLimit, steering);
+    DriverStation.reportError("We are driving", false);
   }
 
   public void pigeonReset(){

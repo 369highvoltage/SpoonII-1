@@ -42,7 +42,7 @@ public final class Constants {
     //Steering PIDs 
     public static double sP = 0.025;
     public static double sI = 0.0445;
-    public static double sD = 0.0065;
+    public static double sD = 0.0035;
     public static double sILimit = 0.7;
 
     public static double steeringModifier = 0.45;
@@ -51,7 +51,7 @@ public final class Constants {
     //Climber limits 
     //names are flipped, rev is highest, non-rev is lowest
     public static float climberLimit = 5;
-    public static float revClimberLimit = -145;
+    public static float revClimberLimit = -150;
 
     public static double autoSpeed = 0.6;
 

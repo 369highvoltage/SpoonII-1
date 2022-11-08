@@ -3,6 +3,7 @@ package frc.robot.commands.AutonomousSequencing;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.AutonomousSequencing.TestCommand;
 
 public class AutonomousCommand {
 

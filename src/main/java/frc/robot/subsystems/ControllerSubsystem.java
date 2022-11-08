@@ -15,7 +15,6 @@ import frc.robot.RobotContainer;
 import frc.robot.commands.AutoAim.AutoAimCommand;
 import frc.robot.commands.AutoAim.AutoshootCommand;
 import frc.robot.commands.AutonomousSequencing.AutonomousCommand;
-import frc.robot.commands.AutonomousSequencing.TestCommand;
 import frc.robot.commands.Movement.PIDDriveCommand;
 import frc.robot.commands.OLD.RevUpShooter;
 import frc.robot.commands.PIDTesting.PIDTurnLeft;
